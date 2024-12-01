@@ -74,21 +74,25 @@ Solusi yang dapat dilakukan untuk memenuhi tujuan dari proyek ini di antaranya:
     *   region(object) : Wilayah tempat tinggal individu, kolom ini bersifat kategorikal
     *   charges(float64) : Biaya asuransi kesehatan yang dibayarkan oleh individu. 
 
-  **Konversi Fitur Kategorikal ke Numerik**
+- **Konversi Fitur Kategorikal ke Numerik**
+  <br>
+   **proses convert categorical features to numeric**
+  ```python
   categ_to_num = {'sex': {'male' : 0 , 'female' : 1},
               'smoker': {'no': 0 , 'yes' : 1},
               'region' : {'northwest':0, 'northeast':1,'southeast':2,'southwest':3}
              }
   dataset_path.replace(categ_to_num, inplace = True)
 
-  <br> sebelum masuk ke tahapan selanjutnya yaitu ada tahapan konversi fitur kategorikal ke numerik. Kode diatas untuk menggantikan nilai kategorikal dikolo [sex, smoker, dan region] dengan nilai numerik, agar data siap digunakan oleh model. inplace=True memastikan bahwa perubahan dilakukan langsung pada dataset tanpa perlu membuat salinan baru. 
-  <br> Konversi ini merupakan bagian penting dari preprocessing data yang memungknkan model machine learning untuk memahami, memproses, dan menganalisis data secara efektif.
+<br> sebelum masuk ke tahapan selanjutnya yaitu ada tahapan konversi fitur kategorikal ke numerik. Kode diatas untuk menggantikan nilai kategorikal dikolo [sex, smoker, dan region] dengan nilai numerik, agar data siap digunakan oleh model. inplace=True memastikan bahwa perubahan dilakukan langsung pada dataset tanpa perlu membuat salinan baru. 
+<br> Konversi ini merupakan bagian penting dari preprocessing data yang memungknkan model machine learning untuk memahami, memproses, dan menganalisis data secara efektif.
 
-  <br> One-Hot Encoding untuk variabel kategorikal
-categorical_columns = ["sex", "smoker", "region"]
-dataset_encoded = pd.get_dummies(dataset_path, drop_first=True)
-print(dataset_encoded.head())
-
+- **One-Hot Encoding untuk variabel kategorikal**
+<br> **Proses one-hot encoding**
+  ```python
+  categorical_columns = ["sex", "smoker", "region"]
+  dataset_encoded = pd.get_dummies(dataset_path, drop_first=True)
+  print(dataset_encoded.head())
 <br> Kode diatas berfungsi untuk melakukan One-Hot Encoding pada variabel kategorikal dalam dataset.
 
 Kode diatas mengubah dataset sehingga semua variabel kategorikal dapat digunakan dalam algoritma machine learning yang membutuhkan data numerik. Dengan drop_first=True, dimensi data yang dihasilkan lebih kecil dan menghindari redundansi.
@@ -120,17 +124,19 @@ Kode diatas mengubah dataset sehingga semua variabel kategorikal dapat digunakan
     <br>
     ![Image](https://drive.google.com/uc?id=1SmkGSAcijHI6QdpjUlb-1mevxnovANGV)
     <br> Grafik diatas menunjukkan korelasi antar fitur dalam dataset yang berkaitan dengan biaya asuransi kesehatan. Di dalam grafik tersebut, penulis dapat melihat hubungan antar berbagai variabel yang ada, dengan fokus pada fitur yang memengaruhi biaya asuransi (charges).
-    
     Kolom dan Baris: Setiap kolom dan baris mewakili variabel dalam dataset. Variabel-variabel tersebut meliputi:
 
-    age: Usia
-    sex: Jenis kelamin (binary: male = 0, female = 1)
-    bmi: Indeks Massa Tubuh
-    children: Jumlah anak
-    smoker: Status merokok (binary: yes = 1, no = 0)
-    region: Wilayah tempat tinggal
-    charges: Biaya asuransi
-    Nilai Korelasi: Nilai korelasi antara dua variabel menunjukkan kekuatan dan arah hubungan antara keduanya. Nilai berkisar antara -1 (hubungan negatif sempurna) hingga 1 (hubungan positif sempurna), dengan 0 menunjukkan tidak ada hubungan.
+    - age: Usia
+    - sex: Jenis kelamin (binary: male = 0, female = 1)
+    - bmi: Indeks Massa Tubuh
+    - children: Jumlah anak
+    - smoker: Status merokok (binary: yes = 1, no = 0)
+    - region: Wilayah tempat tinggal
+    - charges: Biaya asuransi
+   <br> Nilai Korelasi:
+
+    Nilai korelasi antara dua variabel menunjukkan kekuatan dan arah hubungan antara keduanya. Nilai berkisar antara -1 (hubungan negatif sempurna) hingga 1 (hubungan positif sempurna), dengan 0 menunjukkan tidak ada hubungan.
+
     <br> charges (biaya asuransi):
 
     Korelasi kuat dengan smoker (0.79) menunjukkan bahwa status merokok memiliki pengaruh besar terhadap biaya asuransi. Orang yang merokok memiliki biaya asuransi yang lebih tinggi.
@@ -154,35 +160,29 @@ Kode diatas mengubah dataset sehingga semua variabel kategorikal dapat digunakan
   
 ## Data Preparation
 Berikut ini merupakan tahapan-tahapan dalam melakukan pra-pemrosesan data:
-    **DATA CLEANING**
-  - **Melakukan Penanganan Missing Value dan Outlier**
-    <br>  age         0
-          sex         0
-          bmi         0
-          children    0
-          smoker      0
-          region      0
-          charges     0
-          dtype: int64
-    <br> Dari hasil kode tersebut menunjukkan bahwa tidak ada missing value pada dataset. Dataset yang akan digunakan sudah bersih dan siap digunakan tanpa perlu melakukan imputasi atau penghapusan data terkait missing value
-    <br> 
+- **Data Cleaning**
+<br> **Menyaring outlier berdasarkan IQR**
+<br>
+  ```python
+    # Hanya pilih kolom numerik
     numeric_data = dataset_path.select_dtypes(include=['number'])
-
     # Menghitung Q1, Q3, dan IQR pada data numerik
     Q1 = numeric_data.quantile(0.25)
     Q3 = numeric_data.quantile(0.75)
     IQR = Q3 - Q1
-
     # Menyaring outlier berdasarkan IQR
-    dataset_copy_clean = dataset_path[~((numeric_data < (Q1 - 1.5 * IQR)) | (numeric_data > (Q3 + 1.5 * IQR))).any(axis=1)]
-    dataset_path.shape
+    dataset_copy_clean = dataset_path[~((numeric_data < (Q1 - 1.5 * IQR)) |           (numeric_data > (Q3 + 1.5 * IQR))).any(axis=1)]
+    # Menampilkan dimensi dataset asli
+    print("Dimensi asli dataset:", dataset_path.shape)
+    # Menampilkan dimensi dataset setelah pembersihan outlier
+    print("Dimensi dataset setelah menghapus outlier:", dataset_copy_clean.shape)
 
-    kode diatas bertujuan untuk membersihkan outlier dari dataset. Fokus pada fitur yang memiliki nilai angka, karena hanya fitur numerik yang relevan untuk deteksi outlier berbasis IQR. Tujuan dari kode tersebut menghapus baris yang mengandung nilai outlier pada kolom numerik, agar model prediksi tidak terpengaruh oleh nilai ekstrem.
+<br>kode diatas bertujuan untuk membersihkan outlier dari dataset. Fokus pada       fitur yang memiliki nilai angka, karena hanya fitur numerik yang relevan untuk deteksi outlier berbasis IQR. Tujuan dari kode tersebut menghapus baris yang mengandung nilai outlier pada kolom numerik, agar model prediksi tidak terpengaruh oleh nilai ekstrem.
 
-    Dengan hasil bahwa dataset yang lebih bersih, dengan ukuran lebih kecil karena outliers telah dihapus.
+  Dengan hasil bahwa dataset yang lebih bersih, dengan ukuran lebih kecil karena outliers telah dihapus.
 
-    **Split Data**
-  - **Melakukan pembagian dataset**
+- **Split Data**
+  **Melakukan pembagian dataset**
     <br> Untuk mengetahui kinerja model ketika dihadapkan pada data yang belum pernah dilihat sebelumnya, maka perlu dilakukan pembagian dataset. Pada proyek ini dataset dibagi menjadi data latih dan data uji dengan rasio 70% untuk data latih dan 30% untuk data uji. Data latih merupakan data yang akan penulis latih untuk membangun model _machine learning_, sedangkan data uji merupakan data yang belum pernah dilihat oleh model dan digunakan untuk melihat kinerja atau performa dari model yang dilatih.  Pembagian dataset dilakukan dengan modul [train_test_split](https://scikit-learn.org/0.24/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split) dari scikit-learn. Setelah melakukan pembagian dataset, didapatkan jumlah sample pada data latih yaitu 1940 sampel dan jumlah sample pada data uji yaitu 832 sampel dari total jumlah sample pada dataset yaitu 2772 sampel.
     
     **DATA TRANSFORM**
@@ -197,11 +197,11 @@ Berikut ini merupakan tahapan-tahapan dalam melakukan pra-pemrosesan data:
       y_train type: <class 'numpy.ndarray'>
       y_train shape: (1940,)
 
-      Kode tersebut bertujuan untuk memastikan bahwa X_train_transformed memiliki tipe data yang sesuai dengan kebutuhan proses berikutnya, seperti pelatihan model atau evaluasi.
+  Kode tersebut bertujuan untuk memastikan bahwa X_train_transformed memiliki tipe data yang sesuai dengan kebutuhan proses berikutnya, seperti pelatihan model atau evaluasi.
 
-      X_train_transformed dan y_train telah diproses dengan benar dan siap untuk digunakan dalam model machine learning.
+  X_train_transformed dan y_train telah diproses dengan benar dan siap untuk digunakan dalam model machine learning.
 
-      Dimensi data antara fitur (X_train_transformed) dan target (y_train) konsisten, yaitu 1940 sample. Ini penting agar model dapat belajar tanpa error terkait ketidaksesuaian dimensi.
+  Dimensi data antara fitur (X_train_transformed) dan target (y_train) konsisten, yaitu 1940 sample. Ini penting agar model dapat belajar tanpa error terkait ketidaksesuaian dimensi.
   
 ## Modeling
 Pada proyek ini, Proses modeling dalam proyek ini menggunakan 3 algoritma _machine learning_ yaitu `K-Nearest Neighbor`, `Random Forest` dan `Boosting Algorithm` kemudian membandingkan performanya.
@@ -221,7 +221,7 @@ Pada proyek ini, Proses modeling dalam proyek ini menggunakan 3 algoritma _machi
   <br>Tujuan: KNN adalah algoritma non-parametrik yang sederhana namun efektif untuk regresi. Model ini tidak membuat asumsi tentang hubungan antara fitur dan target.
 
 - **Random Forest**
-  <br> Algoritma ini disusun dari banyak algoritma pohon (decision tree) yang pembagian data dan fiturnya dipilih secara acak. Pembuatan model dilakukan dengan menggunakan modul [RandomForestClassifier](https://scikitlearn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html) dari library Scikitlearn. terdapat parameter yang harus digunakan agar hasil dari pembuatan model dapat maksimal. Parameter pertama ialah parameter `n_estimator` yang merupakan jumlah _trees_ (pohon) di _forest_. Di proyek ini penulis melakukan _set_ nilai `n_estimator` sebesar 50 _trees_. Selanjutnya ialah parameter `max_depth` yang merupakan kedalaman atau panjang pohon. Itu merupakan ukuran seberapa banyak pohon dapat membelah (_splitting_) untuk membagi setiap _node_ ke dalam jumlah pengamatan yang di inginkan, di proyek ini penulis melakukan set nilai `max_depth` sebesar 16 _split_. Parameter `random_state` digunakan untuk mengontrol _random number generator_ yang digunakan. Di proyek ini penulis melakukan _set_ nilai pada parameter `random_state` sebesar 55. Lalu yang terakhir ialah parameter `n_jobs` yaitu jumlah _job_ (pekerjaan) yang digunakan secara paralel. Itu merupakan komponen untuk mengontrol _thread_ atau proses yang berjalan secara paralel. `n_jobs = -1` artinya semua proses berjalan secara paralel. Kemudian proses selanjutnya melakukan prediksi menggunakan data uji dan melakukan pengujian.
+  <br> Algoritma ini disusun dari banyak algoritma pohon (decision tree) yang pembagian data dan fiturnya dipilih secara acak. Pembuatan model dilakukan dengan menggunakan modul [RandomForestClassifier](https://scikitlearn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html) dari library Scikitlearn. terdapat parameter yang harus digunakan agar hasil dari pembuatan model dapat maksimal. Parameter pertama ialah parameter `n_estimator` yang merupakan jumlah _trees_ (pohon) di _forest_. Di proyek ini penulis melakukan _set_ nilai `n_estimator` sebesar 100 _trees_. Selanjutnya ialah parameter `max_depth` yang merupakan kedalaman atau panjang pohon. Itu merupakan ukuran seberapa banyak pohon dapat membelah (_splitting_) untuk membagi setiap _node_ ke dalam jumlah pengamatan yang di inginkan, di proyek ini penulis melakukan set nilai `max_depth` sebesar 10 _split_. Parameter `random_state` digunakan untuk mengontrol _random number generator_ yang digunakan. Di proyek ini penulis melakukan _set_ nilai pada parameter `random_state` sebesar 123. Kemudian proses selanjutnya melakukan prediksi menggunakan data uji dan melakukan pengujian.
   -   Kelebihan :
       -   Algoritma Random Forest merupakan algoritma dengan pembelajaran paling akurat yang tersedia. Untuk banyak kumpulan data, algoritma ini menghasilkan pengklasifikasi yang sangat akurat.
       -   Berjalan secara efisien pada data besar.
