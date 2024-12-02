@@ -153,7 +153,7 @@ Berikut ini merupakan tahapan-tahapan dalam melakukan pra-pemrosesan data:
 <br> Konversi ini merupakan bagian penting dari preprocessing data yang memungknkan model machine learning untuk memahami, memproses, dan menganalisis data secara efektif.
 
 - **One-Hot Encoding untuk variabel kategorikal**
-<br>
+  <br>
   ```python
     categorical_columns = ["sex", "smoker", "region"]
     dataset_encoded = pd.get_dummies(dataset_path, drop_first=True)
