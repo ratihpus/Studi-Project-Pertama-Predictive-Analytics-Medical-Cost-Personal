@@ -221,8 +221,9 @@ Dimensi data antara fitur `(X_train_transformed) dan target (y_train)` konsisten
       
 <br> Bagian tersebut hanya menggunakan StandardScaler, yang merupakan alat untuk melakukan standardisasi pada data numerik. Standardisasi mengubah fitur numerik agar memiliki rata-rata 0 dan standar deviasi 1.
 <br> Perbedaanya dari bagian tersebut yaitu :
-      - Pipeline (preprocessor) : menangani dataset seperti dataset insurance            yang memiliki kombinasi fitur numerik (age, bmi, charges, dll.) dan              kategorikal (sex, smoker, region). Memastikan bahwa transformasi,                seperti encoding pada sex dan standarisasi pada bmi, dilakukan dengan            cara yang terstruktur.
-      - StandardScaler : Digunakan hanya untuk menskalakan fitur numerik seperti         age, bmi, dan charges. Tidak akan bekerja dengan fitur kategorikal tanpa         encoding sebelumnya.
+      <br>
+      - Pipeline (preprocessor) : menangani dataset seperti dataset insurance yang memiliki kombinasi fitur numerik (age, bmi, charges, dll.) dan              kategorikal (sex, smoker, region). Memastikan bahwa transformasi, seperti encoding pada sex dan standarisasi pada bmi, dilakukan dengan cara yang terstruktur.
+      - StandardScaler : Digunakan hanya untuk menskalakan fitur numerik seperti `age, bmi, dan charges`. Tidak akan bekerja dengan fitur kategorikal tanpa         encoding sebelumnya.
       Karena dataset yang digunaka mengandung data kategorikal, sehingga Pipeline lebih efektif karena dapat menangani seua tipe fitur sekaligus.
 
 ## Modeling
