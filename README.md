@@ -206,7 +206,7 @@ Kode tersebut bertujuan untuk memastikan bahwa X_train_transformed memiliki tipe
 
 Dimensi data antara fitur `(X_train_transformed) dan target (y_train)` konsisten, yaitu 1940 sample. Ini penting agar model dapat belajar tanpa error terkait ketidaksesuaian dimensi.
 
-    ```X_train_transformed = preprocessor.fit_transform(X_train)
+      X_train_transformed = preprocessor.fit_transform(X_train)
       print("Transformed train features shape:", X_train_transformed.shape)
     
 <br> pada bagian tersebut menggunakan pipeline atau preprocessor yang telah didefinisikan sebelumnya. Preprocessor biasanya merupakan pipeline yang dapat mencakup brbagai jenis pra-pemrosesan, seperti :
@@ -214,10 +214,11 @@ Dimensi data antara fitur `(X_train_transformed) dan target (y_train)` konsisten
     - StandardScaler untuk data numerik.
     - Imputasi untuk menangani nilai yang hilang.
   
-    ```scaler = StandardScaler()
+      scaler = StandardScaler()
       scaler.fit(X_train)
       X_train = scaler.transform(X_train)
       X_test = scaler.transform(X_test)
+      
 <br> Bagian tersebut hanya menggunakan StandardScaler, yang merupakan alat untuk melakukan standardisasi pada data numerik. Standardisasi mengubah fitur numerik agar memiliki rata-rata 0 dan standar deviasi 1.
 <br> Perbedaanya dari bagian tersebut yaitu :
       - Pipeline (preprocessor) : menangani dataset seperti dataset insurance            yang memiliki kombinasi fitur numerik (age, bmi, charges, dll.) dan              kategorikal (sex, smoker, region). Memastikan bahwa transformasi,                seperti encoding pada sex dan standarisasi pada bmi, dilakukan dengan            cara yang terstruktur.
