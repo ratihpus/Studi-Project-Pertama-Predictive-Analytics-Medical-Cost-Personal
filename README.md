@@ -206,14 +206,15 @@ Kode tersebut bertujuan untuk memastikan bahwa X_train_transformed memiliki tipe
 
 Dimensi data antara fitur `(X_train_transformed) dan target (y_train)` konsisten, yaitu 1940 sample. Ini penting agar model dapat belajar tanpa error terkait ketidaksesuaian dimensi.
 
-```python X_train_transformed = preprocessor.fit_transform(X_train)
-       print("Transformed train features shape:", X_train_transformed.shape)
+    ```X_train_transformed = preprocessor.fit_transform(X_train)
+      print("Transformed train features shape:", X_train_transformed.shape)
+    
 <br> pada bagian tersebut menggunakan pipeline atau preprocessor yang telah didefinisikan sebelumnya. Preprocessor biasanya merupakan pipeline yang dapat mencakup brbagai jenis pra-pemrosesan, seperti :
     - One-Hot Encoding untuk data kategorikal.
     - StandardScaler untuk data numerik.
     - Imputasi untuk menangani nilai yang hilang.
   
-    ```python scaler = StandardScaler()
+    ```scaler = StandardScaler()
       scaler.fit(X_train)
       X_train = scaler.transform(X_train)
       X_test = scaler.transform(X_test)
