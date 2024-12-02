@@ -223,7 +223,9 @@ Dimensi data antara fitur `(X_train_transformed) dan target (y_train)` konsisten
 <br> Perbedaanya dari bagian tersebut yaitu :
       <br>
       - Pipeline (preprocessor) : menangani dataset seperti dataset insurance yang memiliki kombinasi fitur numerik (age, bmi, charges, dll.) dan              kategorikal (sex, smoker, region). Memastikan bahwa transformasi, seperti encoding pada sex dan standarisasi pada bmi, dilakukan dengan cara yang terstruktur.
+      <br>
       - StandardScaler : Digunakan hanya untuk menskalakan fitur numerik seperti `age, bmi, dan charges`. Tidak akan bekerja dengan fitur kategorikal tanpa         encoding sebelumnya.
+      <br>
       Karena dataset yang digunaka mengandung data kategorikal, sehingga Pipeline lebih efektif karena dapat menangani seua tipe fitur sekaligus.
 
 ## Modeling
