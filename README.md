@@ -195,7 +195,7 @@ Data transformasi adalah proses mengubah data mentah menjadi bentuk yang lebih s
 - **Standardisasi data**
 Standardisasi merupakan teknik transformasi yang paling umum digunakan dalam tahap data _preparation_. Standardisasi membantu untuk membuat semua fitur numerik berada dalam skala data yang sama dan membuat fitur data menjadi bentuk yang lebih mudah diolah oleh algoritma. Pada proyek ini, standardisasi data dilakukan dengan menerapkan teknik [StandarScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html) dari library Scikitlearn. StandardScaler melakukan proses standardisasi fitur dengan mengurangkan mean (nilai rata-rata) kemudian membaginya dengan standard deviasi untuk menggeser distribusi.  StandardScaler menghasilkan distribusi dengan standard deviasi sama dengan 1 dan mean sama dengan 0. Sekitar 68% dari nilai akan berada di antara -1 dan 1.
 
-    ```python X_train_transformed type: <class 'numpy.ndarray'>
+   ```python X_train_transformed type: <class 'numpy.ndarray'>
       X_train_transformed type: <class 'numpy.ndarray'>
       X_train_transformed shape: (1940, 9)
       y_train type: <class 'numpy.ndarray'>
@@ -206,7 +206,7 @@ Kode tersebut bertujuan untuk memastikan bahwa X_train_transformed memiliki tipe
 
 Dimensi data antara fitur `(X_train_transformed) dan target (y_train)` konsisten, yaitu 1940 sample. Ini penting agar model dapat belajar tanpa error terkait ketidaksesuaian dimensi.
 
-    ```python X_train_transformed = preprocessor.fit_transform(X_train)
+```python X_train_transformed = preprocessor.fit_transform(X_train)
        print("Transformed train features shape:", X_train_transformed.shape)
 <br> pada bagian tersebut menggunakan pipeline atau preprocessor yang telah didefinisikan sebelumnya. Preprocessor biasanya merupakan pipeline yang dapat mencakup brbagai jenis pra-pemrosesan, seperti :
     - One-Hot Encoding untuk data kategorikal.
