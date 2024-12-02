@@ -205,7 +205,24 @@ Kode tersebut bertujuan untuk memastikan bahwa X_train_transformed memiliki tipe
   `X_train_transformed dan y_train` telah diproses dengan benar dan siap untuk digunakan dalam model machine learning.
 
 Dimensi data antara fitur `(X_train_transformed) dan target (y_train)` konsisten, yaitu 1940 sample. Ini penting agar model dapat belajar tanpa error terkait ketidaksesuaian dimensi.
+
+    ```python X_train_transformed = preprocessor.fit_transform(X_train)
+      print("Transformed train features shape:", X_train_transformed.shape)
+<br> pada bagian tersebut menggunakan pipeline atau preprocessor yang telah didefinisikan sebelumnya. Preprocessor biasanya merupakan pipeline yang dapat mencakup brbagai jenis pra-pemrosesan, seperti :
+    - One-Hot Encoding untuk data kategorikal.
+    - StandardScaler untuk data numerik.
+    - Imputasi untuk menangani nilai yang hilang.
   
+    ```python scaler = StandardScaler()
+      scaler.fit(X_train)
+      X_train = scaler.transform(X_train)
+      X_test = scaler.transform(X_test)
+<br> Bagian tersebut hanya menggunakan StandardScaler, yang merupakan alat untuk melakukan standardisasi pada data numerik. Standardisasi mengubah fitur numerik agar memiliki rata-rata 0 dan standar deviasi 1.
+<br> Perbedaanya dari bagian tersebut yaitu :
+      - Pipeline (preprocessor) : menangani dataset seperti dataset insurance            yang memiliki kombinasi fitur numerik (age, bmi, charges, dll.) dan              kategorikal (sex, smoker, region). Memastikan bahwa transformasi,                seperti encoding pada sex dan standarisasi pada bmi, dilakukan dengan            cara yang terstruktur.
+      - StandardScaler : Digunakan hanya untuk menskalakan fitur numerik seperti         age, bmi, dan charges. Tidak akan bekerja dengan fitur kategorikal tanpa         encoding sebelumnya.
+      Karena dataset yang digunaka mengandung data kategorikal, sehingga Pipeline lebih efektif karena dapat menangani seua tipe fitur sekaligus.
+
 ## Modeling
 Pada proyek ini, Proses modeling dalam proyek ini menggunakan 3 algoritma _machine learning_ yaitu `K-Nearest Neighbor`, `Random Forest` dan `Boosting Algorithm` kemudian membandingkan performanya.
 
