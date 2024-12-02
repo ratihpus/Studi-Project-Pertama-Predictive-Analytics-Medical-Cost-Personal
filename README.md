@@ -164,7 +164,7 @@ Berikut ini merupakan tahapan-tahapan dalam melakukan pra-pemrosesan data:
 Kode diatas mengubah dataset sehingga semua variabel kategorikal dapat digunakan dalam algoritma machine learning yang membutuhkan data numerik. Dengan drop_first=True, dimensi data yang dihasilkan lebih kecil dan menghindari redundansi.
 
 - **Menangani Outlier dengan metode IQR**
-<br>
+  <br>
   ```python
     # Hanya pilih kolom numerik
     numeric_data = dataset_path.select_dtypes(include=['number'])
