@@ -34,14 +34,17 @@ Solusi yang dapat dilakukan untuk memenuhi tujuan dari proyek ini di antaranya:
 
 - **Pra-pemrosesan Data**. Pada pra-pemrosesan data dapat dilakukan beberapa tahapan, antara lain:
   
-    -   Melakukan pembagian dataset.
-    -   Mengatasi data pencilan (_outliers_) dengan Metode IQR.
-    -   Standardisasi data fitur numerik pada dataset.
+    -   Konversi fitur dari kategorikal ke numerik.
+    -   One-hot encoding variable kategorikal.
+    -   Menangai outlier dengan metode IQR.
+    -   Split data (pembagian data).
+    -   Melakukan transformasi data.
+    -   Standarisasi data.
   
 - **Pembangunan Model**. Pada pembangunan model terdapat beberapa algoritma yang digunakan, antara lain:
-  - **K-Nearest Neighbor** 
-  - **Random Forest**
-  - **Boosting Algorithm**
+    - **K-Nearest Neighbor** 
+    - **Random Forest**
+    - **Boosting Algorithm**
     
 ## Data Understanding
 - **Informasi Dataset**
@@ -139,11 +142,12 @@ Berikut ini merupakan tahapan-tahapan dalam melakukan pra-pemrosesan data:
 - **Konversi fitur dari kategorikal ke numerik**
   <br>
   ```python
-  categ_to_num = {'sex': {'male' : 0 , 'female' : 1},
+      categ_to_num = {'sex': {'male' : 0 , 'female' : 1},
               'smoker': {'no': 0 , 'yes' : 1},
-              'region' : {'northwest':0, 'northeast':1,'southeast':2,'southwest':3}
+              'region' : {'northwest':0,
+      'northeast':1,'southeast':2,'southwest':3}
              }
-  dataset_path.replace(categ_to_num, inplace = True)
+      dataset_path.replace(categ_to_num, inplace = True)
 
 <br> sebelum masuk ke tahapan selanjutnya yaitu ada tahapan konversi fitur kategorikal ke numerik. Kode diatas untuk menggantikan nilai kategorikal dikolo [sex, smoker, dan region] dengan nilai numerik, agar data siap digunakan oleh model. inplace=True memastikan bahwa perubahan dilakukan langsung pada dataset tanpa perlu membuat salinan baru. 
 <br> Konversi ini merupakan bagian penting dari preprocessing data yang memungknkan model machine learning untuk memahami, memproses, dan menganalisis data secara efektif.
@@ -154,13 +158,14 @@ Berikut ini merupakan tahapan-tahapan dalam melakukan pra-pemrosesan data:
   categorical_columns = ["sex", "smoker", "region"]
   dataset_encoded = pd.get_dummies(dataset_path, drop_first=True)
   print(dataset_encoded.head())
+  
 <br> Kode diatas berfungsi untuk melakukan One-Hot Encoding pada variabel kategorikal dalam dataset.
 
 Kode diatas mengubah dataset sehingga semua variabel kategorikal dapat digunakan dalam algoritma machine learning yang membutuhkan data numerik. Dengan drop_first=True, dimensi data yang dihasilkan lebih kecil dan menghindari redundansi.
 
 - **Menangani Outlier dengan metode IQR**
 <br>
-  ```python
+    ```python
     # Hanya pilih kolom numerik
     numeric_data = dataset_path.select_dtypes(include=['number'])
     # Menghitung Q1, Q3, dan IQR pada data numerik
@@ -174,13 +179,13 @@ Kode diatas mengubah dataset sehingga semua variabel kategorikal dapat digunakan
     # Menampilkan dimensi dataset setelah pembersihan outlier
     print("Dimensi dataset setelah menghapus outlier:", dataset_copy_clean.shape)
 
-<br>kode diatas bertujuan untuk membersihkan outlier dari dataset. Fokus pada       fitur yang memiliki nilai angka, karena hanya fitur numerik yang relevan untuk deteksi outlier berbasis IQR. Tujuan dari kode tersebut menghapus baris yang mengandung nilai outlier pada kolom numerik, agar model prediksi tidak terpengaruh oleh nilai ekstrem.
+<br>kode diatas bertujuan untuk membersihkan outlier dari dataset. Fokus pada     fitur yang memiliki nilai angka, karena hanya fitur numerik yang relevan untuk deteksi outlier berbasis IQR. Tujuan dari kode tersebut menghapus baris yang mengandung nilai outlier pada kolom numerik, agar model prediksi tidak terpengaruh oleh nilai ekstrem.
 
   Dengan hasil bahwa dataset yang lebih bersih, dengan ukuran lebih kecil karena outliers telah dihapus.
 
 - **Split Data**
   **Melakukan pembagian dataset**
-    <br> Untuk mengetahui kinerja model ketika dihadapkan pada data yang belum pernah dilihat sebelumnya, maka perlu dilakukan pembagian dataset. Pada proyek ini dataset dibagi menjadi data latih dan data uji dengan rasio 70% untuk data latih dan 30% untuk data uji. Data latih merupakan data yang akan penulis latih untuk membangun model _machine learning_, sedangkan data uji merupakan data yang belum pernah dilihat oleh model dan digunakan untuk melihat kinerja atau performa dari model yang dilatih.  Pembagian dataset dilakukan dengan modul [train_test_split](https://scikit-learn.org/0.24/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split) dari scikit-learn. Setelah melakukan pembagian dataset, didapatkan jumlah sample pada data latih yaitu 1940 sampel dan jumlah sample pada data uji yaitu 832 sampel dari total jumlah sample pada dataset yaitu 2772 sampel.
+  <br> Untuk mengetahui kinerja model ketika dihadapkan pada data yang belum pernah dilihat sebelumnya, maka perlu dilakukan pembagian dataset. Pada proyek ini dataset dibagi menjadi data latih dan data uji dengan rasio 70% untuk data latih dan 30% untuk data uji. Data latih merupakan data yang akan penulis latih untuk membangun model _machine learning_, sedangkan data uji merupakan data yang belum pernah dilihat oleh model dan digunakan untuk melihat kinerja atau performa dari model yang dilatih.  Pembagian dataset dilakukan dengan modul [train_test_split](https://scikit-learn.org/0.24/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split) dari scikit-learn. Setelah melakukan pembagian dataset, didapatkan jumlah sample pada data latih yaitu 1940 sampel dan jumlah sample pada data uji yaitu 832 sampel dari total jumlah sample pada dataset yaitu 2772 sampel.
     
 - **Melakukan transformasi data**
   <br> Data transformasi adalah proses mengubah data mentah menjadi bentuk yang lebih sesuai untuk analisis atau pelatihan model. Tujuannya adalah untuk memastikan bahwa data dalam format yang optimal dan relevan untuk digunakan oleh algoritma machine learning.
