@@ -273,7 +273,7 @@ Berikut ini perbandingan grafik metrik MSE pada ketiga model:
 
 <br> 
 Hasil MSE (Mean Squared Error) 
-Tabel berikut menunjukkan hasil evaluasi model pada dataset **train** dan **test**, menggunakan metrik **Mean Squared Error (MSE)**:
+Tabel berikut menunjukkan hasil evaluasi model pada dataset `train` dan `test`, menggunakan metrik Mean Squared Error (MSE):
 
 | Model     | Train MSE       | Test MSE       |
 |-----------|-----------------|----------------|
@@ -281,7 +281,7 @@ Tabel berikut menunjukkan hasil evaluasi model pada dataset **train** dan **test
 | RF        | 3,208.16        | 8,674.33       |
 | Boosting  | 25,231.15       | 22,889.55      |
 
-#Penjelasan:
+Penjelasan:
 - **KNN** memiliki performa yang lebih rendah pada data test dibandingkan RF.
 - **Random Forest (RF)** menghasilkan MSE yang jauh lebih rendah, menunjukkan kemampuan prediksi yang lebih baik.
 - **Boosting** memiliki MSE tertinggi pada train dan test, menunjukkan kemungkinan overfitting atau data yang sulit untuk dipelajari secara optimal.
