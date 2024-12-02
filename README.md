@@ -153,8 +153,7 @@ Berikut ini merupakan tahapan-tahapan dalam melakukan pra-pemrosesan data:
 <br> Konversi ini merupakan bagian penting dari preprocessing data yang memungknkan model machine learning untuk memahami, memproses, dan menganalisis data secara efektif.
 
 - **One-Hot Encoding untuk variabel kategorikal**
-<br>
-  ```python
+<br>```python
   categorical_columns = ["sex", "smoker", "region"]
   dataset_encoded = pd.get_dummies(dataset_path, drop_first=True)
   print(dataset_encoded.head())
@@ -165,7 +164,7 @@ Kode diatas mengubah dataset sehingga semua variabel kategorikal dapat digunakan
 
 - **Menangani Outlier dengan metode IQR**
 <br>
-```python
+  ```python
     # Hanya pilih kolom numerik
     numeric_data = dataset_path.select_dtypes(include=['number'])
     # Menghitung Q1, Q3, dan IQR pada data numerik
@@ -173,7 +172,8 @@ Kode diatas mengubah dataset sehingga semua variabel kategorikal dapat digunakan
     Q3 = numeric_data.quantile(0.75)
     IQR = Q3 - Q1
     # Menyaring outlier berdasarkan IQR
-    dataset_copy_clean = dataset_path[~((numeric_data < (Q1 - 1.5 * IQR)) | (numeric_data > (Q3 + 1.5 * IQR))).any(axis=1)]
+    dataset_copy_clean = dataset_path[~((numeric_data < (Q1 - 1.5 * IQR)) |
+    (numeric_data > (Q3 + 1.5 * IQR))).any(axis=1)]
     # Menampilkan dimensi dataset asli
     print("Dimensi asli dataset:", dataset_path.shape)
     # Menampilkan dimensi dataset setelah pembersihan outlier
@@ -181,17 +181,17 @@ Kode diatas mengubah dataset sehingga semua variabel kategorikal dapat digunakan
 
 <br>kode diatas bertujuan untuk membersihkan outlier dari dataset. Fokus pada     fitur yang memiliki nilai angka, karena hanya fitur numerik yang relevan untuk deteksi outlier berbasis IQR. Tujuan dari kode tersebut menghapus baris yang mengandung nilai outlier pada kolom numerik, agar model prediksi tidak terpengaruh oleh nilai ekstrem.
 
-  Dengan hasil bahwa dataset yang lebih bersih, dengan ukuran lebih kecil karena outliers telah dihapus.
+Dengan hasil bahwa dataset yang lebih bersih, dengan ukuran lebih kecil karena outliers telah dihapus.
 
 - **Split Data**
 **Melakukan pembagian dataset**
-  <br> Untuk mengetahui kinerja model ketika dihadapkan pada data yang belum pernah dilihat sebelumnya, maka perlu dilakukan pembagian dataset. Pada proyek ini dataset dibagi menjadi data latih dan data uji dengan rasio 70% untuk data latih dan 30% untuk data uji. Data latih merupakan data yang akan penulis latih untuk membangun model _machine learning_, sedangkan data uji merupakan data yang belum pernah dilihat oleh model dan digunakan untuk melihat kinerja atau performa dari model yang dilatih.  Pembagian dataset dilakukan dengan modul [train_test_split](https://scikit-learn.org/0.24/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split) dari scikit-learn. Setelah melakukan pembagian dataset, didapatkan jumlah sample pada data latih yaitu 1940 sampel dan jumlah sample pada data uji yaitu 832 sampel dari total jumlah sample pada dataset yaitu 2772 sampel.
+<br> Untuk mengetahui kinerja model ketika dihadapkan pada data yang belum pernah dilihat sebelumnya, maka perlu dilakukan pembagian dataset. Pada proyek ini dataset dibagi menjadi data latih dan data uji dengan rasio 70% untuk data latih dan 30% untuk data uji. Data latih merupakan data yang akan penulis latih untuk membangun model _machine learning_, sedangkan data uji merupakan data yang belum pernah dilihat oleh model dan digunakan untuk melihat kinerja atau performa dari model yang dilatih.  Pembagian dataset dilakukan dengan modul [train_test_split](https://scikit-learn.org/0.24/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split) dari scikit-learn. Setelah melakukan pembagian dataset, didapatkan jumlah sample pada data latih yaitu 1940 sampel dan jumlah sample pada data uji yaitu 832 sampel dari total jumlah sample pada dataset yaitu 2772 sampel.
     
 - **Melakukan transformasi data**
-  <br> Data transformasi adalah proses mengubah data mentah menjadi bentuk yang lebih sesuai untuk analisis atau pelatihan model. Tujuannya adalah untuk memastikan bahwa data dalam format yang optimal dan relevan untuk digunakan oleh algoritma machine learning.
+<br> Data transformasi adalah proses mengubah data mentah menjadi bentuk yang lebih sesuai untuk analisis atau pelatihan model. Tujuannya adalah untuk memastikan bahwa data dalam format yang optimal dan relevan untuk digunakan oleh algoritma machine learning.
 
 - **Standardisasi data**
-  <br> Standardisasi merupakan teknik transformasi yang paling umum digunakan dalam tahap data _preparation_. Standardisasi membantu untuk membuat semua fitur numerik berada dalam skala data yang sama dan membuat fitur data menjadi bentuk yang lebih mudah diolah oleh algoritma. Pada proyek ini, standardisasi data dilakukan dengan menerapkan teknik [StandarScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html) dari library Scikitlearn. StandardScaler melakukan proses standardisasi fitur dengan mengurangkan mean (nilai rata-rata) kemudian membaginya dengan standard deviasi untuk menggeser distribusi.  StandardScaler menghasilkan distribusi dengan standard deviasi sama dengan 1 dan mean sama dengan 0. Sekitar 68% dari nilai akan berada di antara -1 dan 1.
+<br> Standardisasi merupakan teknik transformasi yang paling umum digunakan dalam tahap data _preparation_. Standardisasi membantu untuk membuat semua fitur numerik berada dalam skala data yang sama dan membuat fitur data menjadi bentuk yang lebih mudah diolah oleh algoritma. Pada proyek ini, standardisasi data dilakukan dengan menerapkan teknik [StandarScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html) dari library Scikitlearn. StandardScaler melakukan proses standardisasi fitur dengan mengurangkan mean (nilai rata-rata) kemudian membaginya dengan standard deviasi untuk menggeser distribusi.  StandardScaler menghasilkan distribusi dengan standard deviasi sama dengan 1 dan mean sama dengan 0. Sekitar 68% dari nilai akan berada di antara -1 dan 1.
 
     ```python X_train_transformed type: <class 'numpy.ndarray'>
       X_train_transformed type: <class 'numpy.ndarray'>
@@ -199,10 +199,10 @@ Kode diatas mengubah dataset sehingga semua variabel kategorikal dapat digunakan
       y_train type: <class 'numpy.ndarray'>
       y_train shape: (1940,)
 
-  Kode tersebut bertujuan untuk memastikan bahwa X_train_transformed memiliki tipe data yang sesuai dengan kebutuhan proses berikutnya, seperti pelatihan model atau evaluasi.
+Kode tersebut bertujuan untuk memastikan bahwa X_train_transformed memiliki tipe data yang sesuai dengan kebutuhan proses berikutnya, seperti pelatihan model atau evaluasi.
   `X_train_transformed dan y_train` telah diproses dengan benar dan siap untuk digunakan dalam model machine learning.
 
-  Dimensi data antara fitur `(X_train_transformed) dan target (y_train)` konsisten, yaitu 1940 sample. Ini penting agar model dapat belajar tanpa error terkait ketidaksesuaian dimensi.
+Dimensi data antara fitur `(X_train_transformed) dan target (y_train)` konsisten, yaitu 1940 sample. Ini penting agar model dapat belajar tanpa error terkait ketidaksesuaian dimensi.
   
 ## Modeling
 Pada proyek ini, Proses modeling dalam proyek ini menggunakan 3 algoritma _machine learning_ yaitu `K-Nearest Neighbor`, `Random Forest` dan `Boosting Algorithm` kemudian membandingkan performanya.
