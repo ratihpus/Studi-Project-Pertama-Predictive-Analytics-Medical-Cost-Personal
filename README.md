@@ -319,4 +319,4 @@ Dengan membandingkan beberapa model regresi, penulis dapat menyimpulkan bahwa Ra
 Random Forest adalah model terbaik untuk memprediksi biaya asuransi kesehatan berdasarkan dataset ini, karena akurasi yang sangat tinggi dan kinerja stabil pada data uji.
 
 <br> **Kesimpulan**
-Dengan membandingkan performa model dan memilih Random Forest sebagai model terbaik, penulis berhasil mencapai tujuan untuk memprediksi biaya asuransi kesehatan dengan akurasi tinggi. Melalui tahap pra-pemrosesan, feature engineering, dan pemilihan model yang tepat, penulis dapat membangun model prediktif yang kuat dan dapat diandalkan untuk peramalan biaya asuransi di masa depan.
+<br>Dengan membandingkan performa model dan memilih Random Forest sebagai model terbaik, penulis berhasil mencapai tujuan untuk memprediksi biaya asuransi kesehatan dengan akurasi tinggi. Melalui tahap pra-pemrosesan, feature engineering, dan pemilihan model yang tepat, penulis dapat membangun model prediktif yang kuat dan dapat diandalkan untuk peramalan biaya asuransi di masa depan.
