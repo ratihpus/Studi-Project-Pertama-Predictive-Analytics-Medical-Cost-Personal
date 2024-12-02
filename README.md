@@ -155,9 +155,9 @@ Berikut ini merupakan tahapan-tahapan dalam melakukan pra-pemrosesan data:
 - **One-Hot Encoding untuk variabel kategorikal**
 <br>
   ```python
-  categorical_columns = ["sex", "smoker", "region"]
-  dataset_encoded = pd.get_dummies(dataset_path, drop_first=True)
-  print(dataset_encoded.head())
+    categorical_columns = ["sex", "smoker", "region"]
+    dataset_encoded = pd.get_dummies(dataset_path, drop_first=True)
+    print(dataset_encoded.head())
   
 <br> Kode diatas berfungsi untuk melakukan One-Hot Encoding pada variabel kategorikal dalam dataset.
 
