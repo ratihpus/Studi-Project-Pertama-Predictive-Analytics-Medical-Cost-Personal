@@ -74,30 +74,6 @@ Solusi yang dapat dilakukan untuk memenuhi tujuan dari proyek ini di antaranya:
     *   region(object) : Wilayah tempat tinggal individu, kolom ini bersifat kategorikal
     *   charges(float64) : Biaya asuransi kesehatan yang dibayarkan oleh individu. 
 
-- **Konversi Fitur Kategorikal ke Numerik**
-  <br>
-   **proses convert categorical features to numeric**
-  ```python
-  categ_to_num = {'sex': {'male' : 0 , 'female' : 1},
-              'smoker': {'no': 0 , 'yes' : 1},
-              'region' : {'northwest':0, 'northeast':1,'southeast':2,'southwest':3}
-             }
-  dataset_path.replace(categ_to_num, inplace = True)
-
-<br> sebelum masuk ke tahapan selanjutnya yaitu ada tahapan konversi fitur kategorikal ke numerik. Kode diatas untuk menggantikan nilai kategorikal dikolo [sex, smoker, dan region] dengan nilai numerik, agar data siap digunakan oleh model. inplace=True memastikan bahwa perubahan dilakukan langsung pada dataset tanpa perlu membuat salinan baru. 
-<br> Konversi ini merupakan bagian penting dari preprocessing data yang memungknkan model machine learning untuk memahami, memproses, dan menganalisis data secara efektif.
-
-- **One-Hot Encoding untuk variabel kategorikal**
-<br> **Proses one-hot encoding**
-  ```python
-  categorical_columns = ["sex", "smoker", "region"]
-  dataset_encoded = pd.get_dummies(dataset_path, drop_first=True)
-  print(dataset_encoded.head())
-<br> Kode diatas berfungsi untuk melakukan One-Hot Encoding pada variabel kategorikal dalam dataset.
-
-Kode diatas mengubah dataset sehingga semua variabel kategorikal dapat digunakan dalam algoritma machine learning yang membutuhkan data numerik. Dengan drop_first=True, dimensi data yang dihasilkan lebih kecil dan menghindari redundansi.
-
-
 - **Sebaran atau Distribusi Data pada Setiap Fitur**
   <br> sebelum masuk ke tahap distribusi data, yang harus dipersiapkan yaitu mengecek missing value (nilai hilang)
   <br> Berikut merupakan visualisasi data yang menunjukkan sebaran/distribusi data pada beberapa fitur-fitur numerik (`bmi dan charges`) :
@@ -160,8 +136,30 @@ Kode diatas mengubah dataset sehingga semua variabel kategorikal dapat digunakan
   
 ## Data Preparation
 Berikut ini merupakan tahapan-tahapan dalam melakukan pra-pemrosesan data:
-- **Data Cleaning**
-<br> **Menyaring outlier berdasarkan IQR**
+- **Konversi fitur dari kategorikal ke numerik**
+  <br>
+  ```python
+  categ_to_num = {'sex': {'male' : 0 , 'female' : 1},
+              'smoker': {'no': 0 , 'yes' : 1},
+              'region' : {'northwest':0, 'northeast':1,'southeast':2,'southwest':3}
+             }
+  dataset_path.replace(categ_to_num, inplace = True)
+
+<br> sebelum masuk ke tahapan selanjutnya yaitu ada tahapan konversi fitur kategorikal ke numerik. Kode diatas untuk menggantikan nilai kategorikal dikolo [sex, smoker, dan region] dengan nilai numerik, agar data siap digunakan oleh model. inplace=True memastikan bahwa perubahan dilakukan langsung pada dataset tanpa perlu membuat salinan baru. 
+<br> Konversi ini merupakan bagian penting dari preprocessing data yang memungknkan model machine learning untuk memahami, memproses, dan menganalisis data secara efektif.
+
+- **One-Hot Encoding untuk variabel kategorikal**
+<br>
+  ```python
+  categorical_columns = ["sex", "smoker", "region"]
+  dataset_encoded = pd.get_dummies(dataset_path, drop_first=True)
+  print(dataset_encoded.head())
+<br> Kode diatas berfungsi untuk melakukan One-Hot Encoding pada variabel kategorikal dalam dataset.
+
+Kode diatas mengubah dataset sehingga semua variabel kategorikal dapat digunakan dalam algoritma machine learning yang membutuhkan data numerik. Dengan drop_first=True, dimensi data yang dihasilkan lebih kecil dan menghindari redundansi.
+
+- **Menangani Outlier dengan metode IQR**
+<br>
   ```python
     # Hanya pilih kolom numerik
     numeric_data = dataset_path.select_dtypes(include=['number'])
@@ -184,10 +182,10 @@ Berikut ini merupakan tahapan-tahapan dalam melakukan pra-pemrosesan data:
   **Melakukan pembagian dataset**
     <br> Untuk mengetahui kinerja model ketika dihadapkan pada data yang belum pernah dilihat sebelumnya, maka perlu dilakukan pembagian dataset. Pada proyek ini dataset dibagi menjadi data latih dan data uji dengan rasio 70% untuk data latih dan 30% untuk data uji. Data latih merupakan data yang akan penulis latih untuk membangun model _machine learning_, sedangkan data uji merupakan data yang belum pernah dilihat oleh model dan digunakan untuk melihat kinerja atau performa dari model yang dilatih.  Pembagian dataset dilakukan dengan modul [train_test_split](https://scikit-learn.org/0.24/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split) dari scikit-learn. Setelah melakukan pembagian dataset, didapatkan jumlah sample pada data latih yaitu 1940 sampel dan jumlah sample pada data uji yaitu 832 sampel dari total jumlah sample pada dataset yaitu 2772 sampel.
     
-- **Data Transform**
+- **Melakukan transformasi data**
   <br> Data transformasi adalah proses mengubah data mentah menjadi bentuk yang lebih sesuai untuk analisis atau pelatihan model. Tujuannya adalah untuk memastikan bahwa data dalam format yang optimal dan relevan untuk digunakan oleh algoritma machine learning.
 
-  - **Standardisasi data pada semua fitur numerik pada dataset**
+  - **Standardisasi data**
   <br> Standardisasi merupakan teknik transformasi yang paling umum digunakan dalam tahap data _preparation_. Standardisasi membantu untuk membuat semua fitur numerik berada dalam skala data yang sama dan membuat fitur data menjadi bentuk yang lebih mudah diolah oleh algoritma. Pada proyek ini, standardisasi data dilakukan dengan menerapkan teknik [StandarScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html) dari library Scikitlearn. StandardScaler melakukan proses standardisasi fitur dengan mengurangkan mean (nilai rata-rata) kemudian membaginya dengan standard deviasi untuk menggeser distribusi.  StandardScaler menghasilkan distribusi dengan standard deviasi sama dengan 1 dan mean sama dengan 0. Sekitar 68% dari nilai akan berada di antara -1 dan 1.
 
     ```python X_train_transformed type: <class 'numpy.ndarray'>
