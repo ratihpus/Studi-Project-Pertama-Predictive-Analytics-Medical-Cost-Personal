@@ -187,7 +187,7 @@ Dengan hasil bahwa dataset yang lebih bersih, dengan ukuran lebih kecil karena o
 - **Split Data**
 **Melakukan pembagian dataset**
 Untuk mengetahui kinerja model ketika dihadapkan pada data yang belum pernah dilihat sebelumnya, maka perlu dilakukan pembagian dataset. Pada proyek ini dataset dibagi menjadi data latih dan data uji dengan rasio 70% untuk data latih dan 30% untuk data uji. Data latih merupakan data yang akan penulis latih untuk membangun model _machine learning_, sedangkan data uji merupakan data yang belum pernah dilihat oleh model dan digunakan untuk melihat kinerja atau performa dari model yang dilatih.
-<br>Pembagian dataset dilakukan dengan modul [train_test_split](https://scikit-learn.org/0.24/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split) dari scikit-learn. Setelah melakukan pembagian dataset, didapatkan jumlah sample pada data latih yaitu 1940 sampel dan jumlah sample pada data uji yaitu 832 sampel dari total jumlah sample pada dataset yaitu 2772 sampel.
+Pembagian dataset dilakukan dengan modul [train_test_split](https://scikit-learn.org/0.24/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split) dari scikit-learn. Setelah melakukan pembagian dataset, didapatkan jumlah sample pada data latih yaitu 1940 sampel dan jumlah sample pada data uji yaitu 832 sampel dari total jumlah sample pada dataset yaitu 2772 sampel.
     
 - **Melakukan transformasi data**
 Data transformasi adalah proses mengubah data mentah menjadi bentuk yang lebih sesuai untuk analisis atau pelatihan model. Tujuannya adalah untuk memastikan bahwa data dalam format yang optimal dan relevan untuk digunakan oleh algoritma machine learning.
@@ -270,6 +270,21 @@ Sebelum menggunakan metrik MSE, harus dilakukan scaling fitur numerik terlebih d
 Berikut ini perbandingan grafik metrik MSE pada ketiga model:
 <br>
 ![Image](https://drive.google.com/uc?export=view&id=1BMckM-bP5zNgtD-m7D6--WI2tdUTBlHQ)
+
+<br> 
+Hasil MSE (Mean Squared Error) 
+Tabel berikut menunjukkan hasil evaluasi model pada dataset **train** dan **test**, menggunakan metrik **Mean Squared Error (MSE)**:
+
+| Model     | Train MSE       | Test MSE       |
+|-----------|-----------------|----------------|
+| KNN       | 20,300.89       | 20,353.66      |
+| RF        | 3,208.16        | 8,674.33       |
+| Boosting  | 25,231.15       | 22,889.55      |
+
+#Penjelasan:
+- **KNN** memiliki performa yang lebih rendah pada data test dibandingkan RF.
+- **Random Forest (RF)** menghasilkan MSE yang jauh lebih rendah, menunjukkan kemampuan prediksi yang lebih baik.
+- **Boosting** memiliki MSE tertinggi pada train dan test, menunjukkan kemungkinan overfitting atau data yang sulit untuk dipelajari secara optimal.
 
 <br> Selain akurasi untuk menentukan model terbaik dapat dilihat juga berdasarkan tingkat eror pada grafik di atas, semakin kecil tingkat eror maka semakin baik model tersebut memprediksi data. jika dilihat dari gambar di atas Random Forest lah model yang memiliki tingkat eror terendah dibandingkan dengan model lainnya.
 
