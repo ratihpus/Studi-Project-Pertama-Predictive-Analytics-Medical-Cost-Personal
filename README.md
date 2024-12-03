@@ -83,12 +83,13 @@ Solusi yang dapat dilakukan untuk memenuhi tujuan dari proyek ini di antaranya:
   
   - Mengidentifikasi Missing Value dan Outlier
     <br>
-    ![Image](https://drive.google.com/uc?id=1kFsPHiSo6Bo6KEa69tekE1praZMnrCeS)
+    <image src='https://github.com/ratihpus/Studi-Project-Pertama-Predictive-Analytics-Medical-Cost-Personal/blob/main/images/boxplot_outlier.png' width= 500/>
     <br> Terlihat jika di atas banyak terdapat outlier pada setiap variabel, lalu untuk mengatasinya nantinya penulis akan menerapkan batas bawah dan batas atas menggunakan metode IQR
     
   - Univariate Analysis
     <br>
-    ![Image](https://drive.google.com/uc?id=1_fgN1VzW973cFvJJrHPlYT0TIslWx_ls)
+    <image src='https://github.com/ratihpus/Studi-Project-Pertama-Predictive-Analytics-Medical-Cost-Personal/blob/main/images/distribusi_data(right-skewed).png
+' width= 500/>
     <br> Terlihat bahwa pada grafik tersebut menunjukkan empat fitur pada dataset yaitu `age, bmi, children, charges`. 
     -   Grafik `age` menjukkan distribusi usia bahwa sebagian besar individu berusia muda, dengan pengamatan pada rentang usia sekitar 20-30 tahun.
     -   Grafik `bmi` menjukkan distribusi Indeks Massa Tubuh (BMI). BMI pada dataset ini tersebar cukup lebar, dengan konsentrasi yang jelas disekitar 25-35.
@@ -98,10 +99,11 @@ Solusi yang dapat dilakukan untuk memenuhi tujuan dari proyek ini di antaranya:
   
   - Multivariate Analysis
     <br>
-    ![Image](https://drive.google.com/uc?id=1nlTh-0BrJ3tn4ia6majKZq2yLPmYpirT)
+    <image src='https://github.com/ratihpus/Studi-Project-Pertama-Predictive-Analytics-Medical-Cost-Personal/blob/main/images/korelasi_antar_variabel.png' width= 500/>
     <br> Terlihat bahwa pada grafik tersebut  sebagian besar fitur yang memiliki hubungan langsung terhadap charges (seperti age dan bmi) memang menunjukkan tren positif yang signifikan, dimana peningkatan pada sumbu X diikuti dengan peningkatan pada sumbu Y. Namun untuk fitur lainnya seperti children, hubungan tersebut tidak selalu terlihat atau membentuk pola garis lurus yang jelas.
     <br>
-    ![Image](https://drive.google.com/uc?id=1SmkGSAcijHI6QdpjUlb-1mevxnovANGV)
+    <image src='https://github.com/ratihpus/Studi-Project-Pertama-Predictive-Analytics-Medical-Cost-Personal/blob/main/images/corelation_matrix.png
+' width= 500/>
     <br> Grafik diatas menunjukkan korelasi antar fitur dalam dataset yang berkaitan dengan biaya asuransi kesehatan. Di dalam grafik tersebut, penulis dapat melihat hubungan antar berbagai variabel yang ada, dengan fokus pada fitur yang memengaruhi biaya asuransi (charges).
     Kolom dan Baris: Setiap kolom dan baris mewakili variabel dalam dataset. Variabel-variabel tersebut meliputi:
 
@@ -292,7 +294,7 @@ Sebelum menggunakan metrik MSE, harus dilakukan scaling fitur numerik terlebih d
 
 Berikut ini perbandingan grafik metrik MSE pada ketiga model:
 <br>
-![Image](https://drive.google.com/uc?export=view&id=1BMckM-bP5zNgtD-m7D6--WI2tdUTBlHQ)
+<image src='https://github.com/ratihpus/Studi-Project-Pertama-Predictive-Analytics-Medical-Cost-Personal/blob/main/images/nilai_error_model.png' width= 500/>
 
 <br> 
 Hasil MSE (Mean Squared Error) 
