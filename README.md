@@ -81,17 +81,15 @@ Solusi yang dapat dilakukan untuk memenuhi tujuan dari proyek ini di antaranya:
   <br> sebelum masuk ke tahap distribusi data, yang harus dipersiapkan yaitu mengecek missing value (nilai hilang)
   <br> Berikut merupakan visualisasi data yang menunjukkan sebaran/distribusi data pada beberapa fitur-fitur numerik (`bmi dan charges`) :
   
-  - Mengidentifikasi Missing Value dan Outlier
-    <br>
-    ![boxplot_outlier](https://github.com/ratihpus/Studi-Project-Pertama-Predictive-Analytics-Medical-Cost-Personal/blob/60ab989b0000011874f7b91415bc2e981bd98e66/images/boxplot_outlier.png)
-    
-    <br> Terlihat jika di atas banyak terdapat outlier pada setiap variabel, lalu untuk mengatasinya nantinya penulis akan menerapkan batas bawah dan batas atas menggunakan metode IQR
+  - Mengidentifikasi Missing Value dan Outlier  
+    <br> Hasil dari boxplot distribusi data asuransi kesehatan.
+    - Fitur charges menunjukkan banyak outliers dengan biaya yang jauh lebih tinggi dari median (sekitar 10.000)
+      hingga lebih dari 60.000.
+    - Fitur lain (age, sex, bmi, children, smoker, region) memiliki distribusi yang lebih sempit dengan sedikit atau         tanpa outliers.
+      Kesimpulan: charges perlu perhatian khusus, karena outliers signifikan dapat memengaruhi performa model prediksi.
     
   - Univariate Analysis
-    <br>
-    ![distribusi_data(right-skewed)](https://github.com/ratihpus/Studi-Project-Pertama-Predictive-Analytics-Medical-Cost-Personal/blob/60ab989b0000011874f7b91415bc2e981bd98e66/images/distribusi_data(right-skewed).png)
-    
-    <br> Terlihat bahwa pada grafik tersebut menunjukkan empat fitur pada dataset yaitu `age, bmi, children, charges`. 
+    <br> Hasil dari univariate analysis menunjukkan empat fitur pada dataset yaitu `age, bmi, children, charges`. 
     -   Grafik `age` menjukkan distribusi usia bahwa sebagian besar individu berusia muda, dengan pengamatan pada rentang usia sekitar 20-30 tahun.
     -   Grafik `bmi` menjukkan distribusi Indeks Massa Tubuh (BMI). BMI pada dataset ini tersebar cukup lebar, dengan konsentrasi yang jelas disekitar 25-35.
     -   Grafik `children` menunjukkan distribusi jumlah anak yang dimiliki Terlihat bahwa mayoritas memiliki 0 hingga 2 anak, dengan jumlah anak terbanyak adalah 0. Distribusi ini sangat skewed dengan banyak individu yang tidak memiliki anak, dan jumlah individu dengan jumlah 3 atau lebih anak sangat sedikit.
@@ -99,12 +97,9 @@ Solusi yang dapat dilakukan untuk memenuhi tujuan dari proyek ini di antaranya:
 
   
   - Multivariate Analysis
-    <br>
-    ![korelasi_antar_variabel](https://github.com/ratihpus/Studi-Project-Pertama-Predictive-Analytics-Medical-Cost-Personal/blob/60ab989b0000011874f7b91415bc2e981bd98e66/images/korelasi_antar_variabel.png)
-    <br> Terlihat bahwa pada grafik tersebut  sebagian besar fitur yang memiliki hubungan langsung terhadap charges (seperti age dan bmi) memang menunjukkan tren positif yang signifikan, dimana peningkatan pada sumbu X diikuti dengan peningkatan pada sumbu Y. Namun untuk fitur lainnya seperti children, hubungan tersebut tidak selalu terlihat atau membentuk pola garis lurus yang jelas.
-    <br>
-    ![corelation_matrix](https://github.com/ratihpus/Studi-Project-Pertama-Predictive-Analytics-Medical-Cost-Personal/blob/60ab989b0000011874f7b91415bc2e981bd98e66/images/corelation_matrix.png)
-    <br> Grafik diatas menunjukkan korelasi antar fitur dalam dataset yang berkaitan dengan biaya asuransi kesehatan. Di dalam grafik tersebut, penulis dapat melihat hubungan antar berbagai variabel yang ada, dengan fokus pada fitur yang memengaruhi biaya asuransi (charges).
+    <br> Hasil dari multivariate analysis yaitu sebagian besar fitur yang memiliki hubungan langsung terhadap charges (seperti age dan bmi) memang menunjukkan tren positif yang signifikan, dimana peningkatan pada sumbu X diikuti dengan peningkatan pada sumbu Y. Namun untuk fitur lainnya seperti children, hubungan tersebut tidak selalu terlihat atau membentuk pola garis lurus yang jelas.
+  
+    <br> Hasil yang didapatkan dari korelasi menunjukkan korelasi antar fitur dalam dataset yang berkaitan dengan biaya asuransi kesehatan. Di dalam grafik tersebut, penulis dapat melihat hubungan antar berbagai variabel yang ada, dengan fokus pada fitur yang memengaruhi biaya asuransi (charges).
     Kolom dan Baris: Setiap kolom dan baris mewakili variabel dalam dataset. Variabel-variabel tersebut meliputi:
 
     - age: Usia
@@ -291,10 +286,6 @@ Pada proyek ini, metrik evaluasi yang digunakan untuk mengukur kinerja model yai
 - yi^ = nilai prediksi
 
 Sebelum menggunakan metrik MSE, harus dilakukan scaling fitur numerik terlebih dahulu pada data uji untuk menghindari kebocoran data. Setelah melakukan evaluasi berdasarkan metrik MSE dan tingkat akurasi prediksi pada model, penulis mencoba memprediksi harga untuk 30 hari ke depan dengan model KNN dan hasilnya cukup memuaskan karena nilainya tidak jauh berbeda dengan data sebelumnya.
-
-Berikut ini perbandingan grafik metrik MSE pada ketiga model:
-<br>
-![nilai_error_model](https://github.com/ratihpus/Studi-Project-Pertama-Predictive-Analytics-Medical-Cost-Personal/blob/60ab989b0000011874f7b91415bc2e981bd98e66/images/nilai_error_model.png)
 
 <br> 
 Hasil MSE (Mean Squared Error) 
