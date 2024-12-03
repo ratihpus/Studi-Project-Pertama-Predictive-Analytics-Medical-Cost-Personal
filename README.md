@@ -102,8 +102,7 @@ Solusi yang dapat dilakukan untuk memenuhi tujuan dari proyek ini di antaranya:
     <image src='https://github.com/ratihpus/Studi-Project-Pertama-Predictive-Analytics-Medical-Cost-Personal/blob/main/images/korelasi_antar_variabel.png' width= 500/>
     <br> Terlihat bahwa pada grafik tersebut  sebagian besar fitur yang memiliki hubungan langsung terhadap charges (seperti age dan bmi) memang menunjukkan tren positif yang signifikan, dimana peningkatan pada sumbu X diikuti dengan peningkatan pada sumbu Y. Namun untuk fitur lainnya seperti children, hubungan tersebut tidak selalu terlihat atau membentuk pola garis lurus yang jelas.
     <br>
-    <image src='https://github.com/ratihpus/Studi-Project-Pertama-Predictive-Analytics-Medical-Cost-Personal/blob/main/images/corelation_matrix.png
-' width= 500/>
+    <image src='https://github.com/ratihpus/Studi-Project-Pertama-Predictive-Analytics-Medical-Cost-Personal/blob/main/images/corelation_matrix.png' width= 500/>
     <br> Grafik diatas menunjukkan korelasi antar fitur dalam dataset yang berkaitan dengan biaya asuransi kesehatan. Di dalam grafik tersebut, penulis dapat melihat hubungan antar berbagai variabel yang ada, dengan fokus pada fitur yang memengaruhi biaya asuransi (charges).
     Kolom dan Baris: Setiap kolom dan baris mewakili variabel dalam dataset. Variabel-variabel tersebut meliputi:
 
